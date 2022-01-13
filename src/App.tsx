@@ -1,30 +1,7 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, {FC} from 'react';
 
-const App: React.FC<{}> = () => {
-return (
-  <Text>Hello working fine agian</Text>
-)
-};
+import {AppNavigator} from './router';
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const App: FC = () => <AppNavigator />;
 
-export default App;
+export {App};
