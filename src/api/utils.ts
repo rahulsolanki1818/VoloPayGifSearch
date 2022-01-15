@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import _ from 'lodash';
 import Config from 'react-native-config';
 
@@ -15,7 +15,7 @@ export const createAxiosInstance: CreateAxiosInstance = baseURL => {
 type ConfigInterceptor = (config: AxiosRequestConfig) => AxiosRequestConfig;
 export const globalUserTokenInterceptor: ConfigInterceptor = config => {
   if (!_.has(config, 'config.params.api_key')) {
-    _.merge(config, {params: {api_key: Config.API_KEY}});
+    _.merge(config, { params: { api_key: Config.API_KEY } });
   }
 
   return config;

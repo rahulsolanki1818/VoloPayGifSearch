@@ -1,5 +1,5 @@
-import {useCallback, useMemo, useReducer} from 'react';
-import {searchImages} from '../api';
+import { useCallback, useMemo, useReducer } from 'react';
+import { searchImages } from '../api';
 
 interface ImageSearchState {
   isLoading: boolean;
@@ -21,38 +21,45 @@ const imageSearchReducer = (
   state: ImageSearchState,
   action: Partial<Record<keyof ImageSearchState, any>>,
 ) => {
-  return {...state, ...action};
+  return { ...state, ...action };
 };
 
 const useImageSearch = () => {
   const [state, dispatch] = useReducer(imageSearchReducer, imageSearchState);
 
   const searchImage = useCallback(
-    async (q: string) => {
+    async (query: string) => {
       try {
-        if (state.query === q) {
-          dispatch({isLoading: true, page: state.page + 1});
+        let page = 0;
+        if (state.query === query) {
+          page = state.page + 1;
+          dispatch({ isLoading: true, page });
         } else {
-          dispatch({isLoading: true, query: q, page: 0});
+          page = 0;
+          dispatch({ isLoading: true, query, page });
         }
 
+        const offset = page * limit - 1;
+
         const response = await searchImages({
-          q,
-          lang: 'en',
           limit,
-          offset: state.page * limit,
+          q: query,
+          lang: 'en',
+          offset: offset > -1 ? offset : 0,
         });
+
         if (response?.status === 200) {
-          dispatch({result: response.data.data});
+          const { data } = response.data;
+          dispatch({ result: page > 0 ? [...state.result, ...data] : data });
         }
       } catch (error) {
         console.log('Something went wrong while searching');
         console.log(error);
       } finally {
-        dispatch({isLoading: false});
+        dispatch({ isLoading: false });
       }
     },
-    [state.page, state.query],
+    [state],
   );
 
   const returnedState = useMemo(() => {
@@ -65,4 +72,4 @@ const useImageSearch = () => {
   return returnedState;
 };
 
-export {useImageSearch};
+export { useImageSearch };

@@ -59,23 +59,23 @@ interface ImageSearch {
 }
 
 interface Images {
-  original: {[key: string]: string};
+  original: { [key: string]: string };
   downsized: The480_WStill;
   downsized_large: The480_WStill;
   downsized_medium: The480_WStill;
   downsized_small: DownsizedSmall;
   downsized_still: The480_WStill;
-  fixed_height: {[key: string]: string};
-  fixed_height_downsampled: {[key: string]: string};
-  fixed_height_small: {[key: string]: string};
+  fixed_height: { [key: string]: string };
+  fixed_height_downsampled: { [key: string]: string };
+  fixed_height_small: { [key: string]: string };
   fixed_height_small_still: The480_WStill;
   fixed_height_still: The480_WStill;
-  fixed_width: {[key: string]: string};
-  fixed_width_downsampled: {[key: string]: string};
-  fixed_width_small: {[key: string]: string};
+  fixed_width: { [key: string]: string };
+  fixed_width_downsampled: { [key: string]: string };
+  fixed_width_small: { [key: string]: string };
   fixed_width_small_still: The480_WStill;
   fixed_width_still: The480_WStill;
-  looping: {[key: string]: string};
+  looping: { [key: string]: string };
   original_still: The480_WStill;
   original_mp4: DownsizedSmall;
   preview: DownsizedSmall;

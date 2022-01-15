@@ -9,9 +9,9 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Colors, Size} from '../theme';
+import { Colors, Size } from '../theme';
 
 interface SearchBoxProps {
   value?: string;
@@ -24,18 +24,16 @@ interface SearchBoxProps {
 }
 
 const SearchBox: React.FC<SearchBoxProps> = props => {
-  const TagRow: ListRenderItem<Tag> = ({item}) => (
-    <TouchableOpacity
-      style={styles.tagItem}
-      onPress={() => props.onTagSelect(item.name)}>
+  const TagRow: ListRenderItem<Tag> = ({ item }) => (
+    <TouchableOpacity style={styles.tagItem} onPress={() => props.onTagSelect(item.name)}>
       <Text style={styles.tagText}>{item.name}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View>
+    <View style={styles.main}>
       <View style={[styles.container, props.style]}>
-        <Icon name="search-outline" size={30} color="#900" />
+        <Icon name="search-outline" size={30} color={Colors.icon} />
         <TextInput
           style={styles.textInput}
           value={props.value}
@@ -60,6 +58,9 @@ const SearchBox: React.FC<SearchBoxProps> = props => {
 };
 
 const styles = StyleSheet.create({
+  main: {
+    zIndex: 1,
+  },
   container: {
     borderRadius: Size[20],
     borderWidth: Size[1],
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
     paddingLeft: Size[20],
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: Size[10],
   },
   textInput: {
     flex: 1,
@@ -87,6 +89,9 @@ const styles = StyleSheet.create({
     top: Size[50],
     left: 0,
     right: 0,
+    zIndex: 5,
+    backgroundColor: Colors.background.white,
+    borderRadius: Size[20],
   },
   tagItem: {
     height: Size[35],
@@ -111,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {SearchBox};
+export { SearchBox };

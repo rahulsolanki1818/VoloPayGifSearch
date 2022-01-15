@@ -1,4 +1,4 @@
-import {ms} from 'react-native-size-matters';
+import { ms } from 'react-native-size-matters';
 
 const Size = {
   0: ms(0),
@@ -105,4 +105,4 @@ const Size = {
   150: ms(150),
 };
 
-export {Size};
+export { Size };
